@@ -1,4 +1,5 @@
 import * as chartJs from "chart.js";
+import { formatPart } from './reading'
 
 let chart;
 
@@ -6,15 +7,17 @@ export const formatDateLabel = (timestamp) => {
   const date = new Date(timestamp);
   const month = date.getMonth();
   const day = date.getDate();
-
-  const formatPart = (value) => {
-    return value < 10 ? `0${value}` : `${value}`;
-  };
-
   return `${formatPart(day)}/${formatPart(month + 1)}`;
 };
 
-export const renderChart = (readings) => {
+export const formatHourLabel = (timestamp) => {
+  const date = new Date(timestamp);
+  const hour = date.getHours();
+  return formatPart(hour)
+};
+
+export const renderChart = (readings, renderDay = true) => {
+  const formatLabelFunc = renderDay ? formatDateLabel : formatHourLabel;
   chartJs.Chart.defaults.font.size = "10px";
 
   chartJs.Chart.register.apply(
@@ -22,7 +25,7 @@ export const renderChart = (readings) => {
     Object.values(chartJs).filter((chartClass) => chartClass.id)
   );
 
-  const labels = readings.map(({ time }) => formatDateLabel(time));
+  const labels = readings.map(({ time }) => formatLabelFunc(time));
   const values = readings.map(({ value }) => value);
 
   const data = {
@@ -45,28 +48,29 @@ export const renderChart = (readings) => {
     chart.destroy();
   }
 
+
   chart = new chartJs.Chart("usageChart", {
-    type: "bar",
-    data: data,
-    options: {
-      scales: {
-        y: {
-          grid: {
+      type: "bar",
+      data: data,
+      options: {
+        scales: {
+          y: {
+            grid: {
+              display: false,
+            },
+          },
+          x: {
+            grid: {
+              display: false,
+            },
+          },
+        },
+        plugins: {
+          legend: {
             display: false,
           },
         },
-        x: {
-          grid: {
-            display: false,
-          },
-        },
+        maintainAspectRatio: false,
       },
-      plugins: {
-        legend: {
-          display: false,
-        },
-      },
-      maintainAspectRatio: false,
-    },
-  });
-};
+    });
+  };

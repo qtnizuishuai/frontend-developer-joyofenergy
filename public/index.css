@@ -102,3 +102,42 @@ html {
 .border-grey {
   border: 1px solid rgb(225, 225, 225);
 }
+
+/** 按钮部分 */
+
+.default-button {
+  border-radius: 0.4rem;
+  color: rgb(109, 142, 207);
+  background-color: rgb(255, 255, 255);
+}
+
+.default-button:hover,
+.default-button.active {
+  transition: all .3s;
+  background-color: rgb(55, 118, 240);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+/**
+*/
+.container {
+  width: 100%;
+}
+.container .box{
+  border-radius: 0.5rem;
+  padding:0.5rem 1rem;
+  margin-right: 2rem;
+  flex:1;
+  background-color: rgb(245, 245, 245);
+}
+
+.container .box > p {
+  color: rgb(109, 109, 109);
+}
+
+.container .box:nth-last-child(1) {
+  margin-right:0;
+}
+
+

@@ -7,7 +7,7 @@
     <meta name="description" content="JOI Energy" />
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="basscss.css" />
-    <script src="index.js" type="module"></script>
+    <script src="dist/index.js" type="module"></script>
     <title>JOI Energy</title>
   </head>
   <body>
@@ -73,17 +73,55 @@
               pb1
               roundedMore
               border-grey
-              bg-blue
               white
               bold
+              active
+              default-button
+              last-30
             "
           >
             Last 30 days
+          </button>
+          <button  class="
+              h5
+              inline-block
+              shadow-2
+              pl2
+              pr2
+              pt1
+              pb1
+              roundedMore
+              border-grey
+              white
+              bold
+              default-button
+              last-24
+            ">
+            Last 24 Hours
           </button>
         </section>
         <section class="chartHeight mb3">
           <canvas id="usageChart"></canvas>
         </section>
+         <section class="mt1">
+            <div class="container flex">
+              <div class="box shadow-2">
+                <p class="bold h5">Cost</p>
+                <p id="cost-num" class="h3">xx</p>
+                <p class="h5">$</p>
+              </div>
+              <div class="box shadow-2">
+                <p class="bold h5">Consumption</p>
+                <p id="consumption-num" class="h3">xx</p>
+                <p class="h5">kwh</p>
+              </div>
+              <div class="box shadow-2">
+                <p class="bold h5">FootPrint</p>
+                <p id="tonnes-num" class="h3">xx</p>
+                <p class="h5">tonnes</p>
+              </div>
+            </div>
+         </section>
       </article>
     </div>
   </body>
